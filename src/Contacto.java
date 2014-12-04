@@ -1,14 +1,14 @@
 public class Contacto {
 
 	//añadid las propiedades convenientes
-	private String DNI;
+	private String dni;
 	private String nombre;
 	private String apellido;
 	private int telefono;
 	
 	//métodos getter y setter
 	public void setDNI(String dato){
-		this.DNI = dato;
+		this.dni = dato;
 	}
 	public void setNombre(String dato){
 		this.nombre = dato;
@@ -21,7 +21,7 @@ public class Contacto {
 	}
 //****************************************
 	public String getDNI(){
-		return this.DNI;
+		return this.dni;
 	}
 	public String getNombre(){
 		return this.nombre;

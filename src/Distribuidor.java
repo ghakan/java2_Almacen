@@ -1,7 +1,7 @@
 public class Distribuidor {
 	//propiedades
 	private String nombre;
-	private String CIF;
+	private String cif;
 	private Direccion direccion;
 	private Contacto personaContacto;
 
@@ -10,7 +10,7 @@ public class Distribuidor {
 	    	this.nombre = dato;
     	}
 	public void setCIF(String dato){
-	    	this.nombre = dato;
+	    	this.cif = dato;
     	}
 	public void setDireccion(Direccion dato){
 	    	this.direccion = dato;
@@ -23,7 +23,7 @@ public class Distribuidor {
 		return this.nombre;
 	}
 	public String getCIF(){
-		return this.CIF;
+		return this.cif;
 	}
 	public Direccion getDireccion(){
 		return this.direccion;
