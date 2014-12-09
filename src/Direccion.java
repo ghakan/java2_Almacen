@@ -12,18 +12,19 @@ public class Direccion {
 	public void setCpostal(int dato){
 	    	this.cpostal = dato;
     	}
+	
 	public void setDireccion(String dato){
 	    	this.direccion = dato;
     	}
 //*************************************
-	public String getPais(String dato){
-	    	return this.pais = dato;
+	public String getPais(){
+	    	return this.pais;
     	}
-	public int getCpostal(int dato){
-	    	return this.cpostal = dato;
+	public int getCpostal(){
+	    	return this.cpostal;
     	}
-	public String getDireccion(String dato){
-	    	return this.direccion = dato;
+	public String getDireccion(){
+	    	return this.direccion;
     	}
 
 }

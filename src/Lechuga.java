@@ -17,7 +17,7 @@ public class Lechuga {
 	public void setColor(String dato){
 	    	this.color = dato;
     	}
-	public void setEurosUnidad(DOuble dato){
+	public void setEurosUnidad(Double dato){
 	    	this.eurosUnidad = dato;
     	}
 	public void setDistribuidor(Distribuidor dato){
