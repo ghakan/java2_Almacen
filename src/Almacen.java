@@ -2,8 +2,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.FileReader;
 import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.io.IOException;
 
 
@@ -228,7 +226,7 @@ public class Almacen {
 				System.out.println("Nombre cliente: " + al_cliente.get(e).getNombre());
 				System.out.println("Apellidos: " + al_cliente.get(e).getApellidos());
 				System.out.println("Direccion: " + al_cliente.get(e).getDireccion().getDireccion());
-					System.out.println("Persona de contacto: " + al_cliente.get(e).getNum_socio());
+					System.out.println("Numero socio: " + al_cliente.get(e).getNum_socio());
 					System.out.println("Descuento " + al_cliente.get(e).getDto());
 				System.out.println("--------------------------------");
 			}
