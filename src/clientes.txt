@@ -1,0 +1,4 @@
+ruben, perez, 484337427N, calle9, 32, 2
+iosu, vaquerizo, 584657427D, calle8, 30, 8
+iban, garcia, 284337427L, calle5, 70, 5
+sergio, alvarez, 890384417T, calle7, 12, 10

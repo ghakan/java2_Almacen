@@ -22,16 +22,16 @@ public class Leche {
 //**************************************
 	public String getTipo() {
 		return this.tipo;
-    	}
+    }
 	public String getProcedencia() {
 		return this.procedencia;
-    	}
+    }
 	public Double getEurosLitro() {
 		return this.eurosLitro;
-    	}
+    }
 	public Distribuidor getDistribuidor() {
 		return this.distribuidor;
-    	}
+    }
 
 
 
