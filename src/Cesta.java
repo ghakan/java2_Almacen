@@ -8,18 +8,24 @@ public class Cesta {
 	private ArrayList<Manzana> manzana;
 	private ArrayList<Lechuga> lechuga;
 	private ArrayList<Leche> leche;
+	private int descuento;
+	private int valor;
 //métodos getter y setter
 	public void setCliente(Cliente dato){
-		this.cliente = dato;	
+		this.cliente = dato;
 	}
 	public void setManzana(ArrayList<Manzana> dato){
-		this.manzana = dato;	
+		this.manzana = dato;
 	}
 	public void setLechuga(ArrayList<Lechuga> dato){
-		this.lechuga = dato;	
+		this.lechuga = dato;
 	}
 	public void setLeche(ArrayList<Leche> dato){
-		this.leche = dato;	
+		this.leche = dato;
+	}
+	//método calcular importe compra
+	public void setDescuento(int descuentoC, int precioP){
+		this.valor = precioP - (precioP * descuentoC) / 100;
 	}
 //**************************************
 	public Cliente getCliente (){
@@ -34,7 +40,10 @@ public class Cesta {
     public ArrayList<Leche> getLeche() {
 		return this.leche;
     }
-
-//método calcular importe compra
-
+    public int getDescuento() {
+		return this.descuento;
+    }
+    public int getvalor() {
+		return this.valor;
+    }
 }

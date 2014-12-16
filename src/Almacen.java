@@ -7,20 +7,93 @@ import java.io.IOException;
 
 public class Almacen {
 	public static void main (String args[]) throws IOException {
+
+		int seleccion = 0;
+		String distri = "";
+		Scanner sc = new Scanner(System.in);
+		System.out.println("*********** PULSA NUMERO *********");
+		System.out.println("1- Mostrar distribuidores");
+		System.out.println("2- Introducir productos");
+		System.out.println("3- Mostrar clientes");
+		System.out.println("4- Cesta");
+		System.out.println("5- Salir");
+		System.out.println("*********** ************ *********");
+		seleccion = sc.nextInt();
 		ArrayList<Distribuidor> al_distribuidor = new ArrayList<Distribuidor>();
 
 		FileReader archivo = new FileReader("/home/zubiri/ProyectosJava/java2_Almacen/src/distribuidores.txt");
+		FileReader archivo2 = new FileReader("/home/zubiri/ProyectosJava/java2_Almacen/src/clientes.txt");
+		FileReader archivo3 = new FileReader("/home/zubiri/ProyectosJava/java2_Almacen/src/productos.txt");
 
  		Scanner linea = new Scanner(archivo);
+ 		Scanner linea2 = new Scanner(archivo2);
+ 		Scanner linea3 = new Scanner(archivo3);
 						
 			//obtenemos la linea
 	 		String[] separado = null;
+	 		String[] separado2 = null;
+	 		String[] separado3 = null;	
+
+	 		ArrayList<Cliente> al_cliente = new ArrayList<Cliente>();
+	 		ArrayList<Manzana> al_manzana = new ArrayList<Manzana>();
+	 		ArrayList<Lechuga> al_lechuga = new ArrayList<Lechuga>();
+	 		ArrayList<Leche> al_leche = new ArrayList<Leche>();
+
+	 		//creamos los objetos
+	 		Distribuidor o_distribuidor = new Distribuidor();
+			Direccion o_direccion = new Direccion();
+			Contacto o_contacto = new Contacto();
+	 		Manzana o_manzana = new Manzana();
+			Leche o_leche = new Leche();
+			Lechuga o_lechuga = new Lechuga();
+
+	 		while (linea2.hasNextLine()){     
+	 			//creamos los objetos
+				Cliente o_cliente = new Cliente();
+				Direccion o_direccion2 = new Direccion();
+	 			
+	 			//separamos los datos en el array
+	 			separado2=linea2.nextLine().split(", ");
+	 			//System.out.print("\n"+separado[0]);
+
+	 			//introducimos los valores en los objetos para despues añadirlos al AarrayList
+	 			//CLIENTE
+	 			o_cliente.setNombre(separado2[0]);
+	 			o_cliente.setApellidos(separado2[1]);
+	 			o_cliente.setDNI(separado2[2]);
+	 			//DIRECCION
+	 			o_direccion2.setDireccion(separado2[3]);
+	 			//CLIENTE
+	 			o_cliente.setNum_socio(Double.parseDouble(separado2[4]));
+	 			o_cliente.setDto(Double.parseDouble(separado2[5]));
+
+	 			o_cliente.setDireccion(o_direccion2);
+				//añadimos el objeto distribuidor al ArrayList
+				al_cliente.add(o_cliente);
+			}
+
+			while (linea3.hasNextLine()){ 
+
+	 			//separamos los datos en el array
+	 			separado3=linea3.nextLine().split(", ");
+	 			//System.out.print("\n"+separado[0]);
+
+	 			//introducimos los valores en los objetos para despues añadirlos al AarrayList
+	 			//Manzana
+	 			o_manzana.setTipoManzana(separado2[0]);
+	 			o_manzana.setProcedencia(separado2[1]);
+	 			o_manzana.setColor(separado2[2]);
+	 			o_manzana.setEurosKilo(Double.parseDouble(separado2[3]));
+	 			o_distribuidor.setNombre(separado2[4]);
+	 			o_manzana.setCodigobarras(Integer.parseInt(separado2[5]));
+
+	 			//o_manzana.setCodigobarras(o_manzana);
+				//añadimos el objeto distribuidor al ArrayList
+				al_manzana.add(o_manzana);
+			}
 
 	 		while (linea.hasNextLine()){
-				//creamos los objetos
-				Distribuidor o_distribuidor = new Distribuidor();
-				Direccion o_direccion = new Direccion();
-				Contacto o_contacto = new Contacto();
+
 	 			
 	 			//separamos los datos en el array
 	 			separado=linea.nextLine().split(", ");
@@ -50,33 +123,30 @@ public class Almacen {
 			}
 			archivo.close();
 				//System.out.print(al_distribuidor.get(0).getNombre());
-			//recorremos el arraylist
-			for(int x=0; x<al_distribuidor.size(); x++){
+			switch (seleccion){
+				case 1: 
+				//recorremos el arraylist
+				for(int x=0; x<al_distribuidor.size(); x++){
 
-	      		System.out.print("\n*************************************\n");
-				//escribimos los datos del distribuidor de la posicion x
-				System.out.println("Nombre: " + al_distribuidor.get(x).getNombre());
-				System.out.println("C.I.F.: " + al_distribuidor.get(x).getCIF());
-				System.out.println("Direccion: ");
-					System.out.println("	" + al_distribuidor.get(x).getDireccion().getPais());
-					System.out.println("	" + al_distribuidor.get(x).getDireccion().getDireccion());
-					System.out.println("	" + al_distribuidor.get(x).getDireccion().getCpostal());
-				System.out.println("Persona de contacto: ");
-					System.out.println("	" + al_distribuidor.get(x).getPersonaContacto().getDNI());
-					System.out.println("	" + al_distribuidor.get(x).getPersonaContacto().getNombre());
-					System.out.println("	" + al_distribuidor.get(x).getPersonaContacto().getApellido());
-					System.out.println("	" + al_distribuidor.get(x).getPersonaContacto().getTelefono());
-			System.out.println("--------------------------------");   
-			
-			}
-			Scanner sc = new Scanner(System.in);
-			String distri = "";
-
+		      		System.out.print("\n*************************************\n");
+					//escribimos los datos del distribuidor de la posicion x
+					System.out.println("Nombre: " + al_distribuidor.get(x).getNombre());
+					System.out.println("C.I.F.: " + al_distribuidor.get(x).getCIF());
+					System.out.println("Direccion: ");
+						System.out.println("	" + al_distribuidor.get(x).getDireccion().getPais());
+						System.out.println("	" + al_distribuidor.get(x).getDireccion().getDireccion());
+						System.out.println("	" + al_distribuidor.get(x).getDireccion().getCpostal());
+					System.out.println("Persona de contacto: ");
+						System.out.println("	" + al_distribuidor.get(x).getPersonaContacto().getDNI());
+						System.out.println("	" + al_distribuidor.get(x).getPersonaContacto().getNombre());
+						System.out.println("	" + al_distribuidor.get(x).getPersonaContacto().getApellido());
+						System.out.println("	" + al_distribuidor.get(x).getPersonaContacto().getTelefono());
+				System.out.println("--------------------------------");
+				}
+				break;
+			case 2:
 			//************************ INICIO MANZANA ****************************
-		ArrayList<Manzana> al_manzana = new ArrayList<Manzana>();
-
 			for(int k=0; k<2; k++){
-				Manzana o_manzana = new Manzana();
 				System.out.println("\n ****************** Manzana Nº"+(k+1)+" **************** ");
 				System.out.println("\n\tTipo manzana:");
 					o_manzana.setTipoManzana(sc.next());
@@ -98,9 +168,6 @@ public class Almacen {
 		}
 
 		//************************ INICIO LECHUGA ****************************
-			ArrayList<Lechuga> al_lechuga = new ArrayList<Lechuga>();
-
-			Lechuga o_lechuga = new Lechuga();
 			System.out.println("\n ****************** Lechuga Nº1 **************** ");
 				System.out.println("\n\tTipo lechuga:");
 					o_lechuga.setTipoLechuga(sc.next());
@@ -121,10 +188,8 @@ public class Almacen {
 				al_lechuga.add(o_lechuga);
 
 			//************************ FIN LECHUGA ****************************
-			ArrayList<Leche> al_leche = new ArrayList<Leche>();
 
 			for(int u=0; u<2; u++){
-				Leche o_leche = new Leche();
 				System.out.println("\n ****************** Leche Nº"+(u+1)+" **************** ");
 				System.out.println("\n\tTipo de Leche:");
 					o_leche.setTipo(sc.next());
@@ -184,41 +249,10 @@ public class Almacen {
 			System.out.println("TELEFONO:" + al_leche.get(i).getDistribuidor().getPersonaContacto().getTelefono());
 			System.out.println("*********************************************************");
 		}
-
+		break;
+		case 3:
 	//******************************** INICIO CLIENTES **********************************************
-		ArrayList<Cliente> al_cliente = new ArrayList<Cliente>();
 
-		FileReader archivo2 = new FileReader("/home/zubiri/ProyectosJava/java2_Almacen/src/clientes.txt");
-
- 		Scanner linea2 = new Scanner(archivo2);
-						
-			//obtenemos la linea
-	 		String[] separado2 = null;
-
-	 		while (linea2.hasNextLine()){     
-	 			//creamos los objetos
-				Cliente o_cliente = new Cliente();
-				Direccion o_direccion2 = new Direccion();
-	 			
-	 			//separamos los datos en el array
-	 			separado2=linea2.nextLine().split(", ");
-	 			//System.out.print("\n"+separado[0]);
-
-	 			//introducimos los valores en los objetos para despues añadirlos al AarrayList
-	 			//CLIENTE
-	 			o_cliente.setNombre(separado2[0]);
-	 			o_cliente.setApellidos(separado2[1]);
-	 			o_cliente.setDNI(separado2[2]);
-	 			//DIRECCION
-	 			o_direccion2.setDireccion(separado2[3]);
-	 			//CLIENTE
-	 			o_cliente.setNum_socio(Double.parseDouble(separado2[4]));
-	 			o_cliente.setDto(Double.parseDouble(separado2[5]));
-
-	 			o_cliente.setDireccion(o_direccion2);
-				//añadimos el objeto distribuidor al ArrayList
-				al_cliente.add(o_cliente);
-			}
 			for(int e=0; e<al_distribuidor.size(); e++){
 
 	      		System.out.print("\n*************************************\n");
@@ -230,5 +264,57 @@ public class Almacen {
 					System.out.println("Descuento " + al_cliente.get(e).getDto());
 				System.out.println("--------------------------------");
 			}
+		break;
+		case 4:
+		 //cesta
+			Cesta o_cesta = new Cesta();
+			//int numSocio = null;
+      		System.out.print("\n----------- CESTA ---------------\n");
+			//pedimos el numero de socio
+			System.out.println("\n\tIntroduce tu numero de socio:");
+				int numSocio = sc.nextInt();
+			System.out.println("--------------------------------");
+
+			for(int p=0; p<al_cliente.size(); p++){
+				Double resultadoSocio = al_cliente.get(p).getNum_socio();
+				if (numSocio == resultadoSocio){
+					System.out.print("\n*************************************\n");
+					//escribimos el numero de socio del cliente de la posicion p
+					System.out.println("Nombre cliente: " + al_cliente.get(p).getNombre());
+					System.out.println("Apellidos: " + al_cliente.get(p).getApellidos());
+					System.out.println("Direccion: " + al_cliente.get(p).getDireccion().getDireccion());
+					System.out.println("Numero socio: " + al_cliente.get(p).getNum_socio());
+					System.out.println("Descuento " + al_cliente.get(p).getDto());
+					System.out.println("--------------------------------");
+				}
+				else {
+				//no has introducido un nuemro de socio correcto
+				}
+			}
+			System.out.println("\n\tIntroduce el tipo de brras del producto:");
+				//o_cesta = o_manzana.setManzana.setCodigobarras(sc.next());
+				int codigoB = sc.nextInt();
+
+			for(int f=0; f<al_manzana.size(); f++){
+				//Double resultadoSocio = al_cliente.get(p).getNum_socio();
+				if (codigoB == al_manzana.get(f).getCodigobarras()){
+					System.out.println("Tipo manzana: " + al_manzana.get(f).getTipoManzana());
+					System.out.println("Procedencia: " + al_manzana.get(f).getProcedencia());
+					System.out.println("Color: " + al_manzana.get(f).getColor());
+					System.out.println("Euros/Kilo: " + al_manzana.get(f).getEurosKilo());
+					System.out.println("DISTRIBUIDOR: " + al_manzana.get(f).getDistribuidor().getNombre());
+					System.out.println("*********************************************************");
+				}
+				else {
+				//no has introducido el codigo de barras correcto
+				}
+			}
+		break;
+		case 5:
+			System.out.println("\tVuelve cuando quieras. ");
+		break;
+		default:
+			System.out.println("\tVuelvelo a intentar introduciendo un numero del menú ");
+		}
 	}
 }
