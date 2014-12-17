@@ -46,6 +46,7 @@ public class Almacen {
 	 		Manzana o_manzana = new Manzana();
 			Leche o_leche = new Leche();
 			Lechuga o_lechuga = new Lechuga();
+			Cesta o_cesta = new Cesta();
 
 	 		while (linea2.hasNextLine()){     
 	 			//creamos los objetos
@@ -80,12 +81,13 @@ public class Almacen {
 
 	 			//introducimos los valores en los objetos para despues añadirlos al AarrayList
 	 			//Manzana
-	 			o_manzana.setTipoManzana(separado2[0]);
-	 			o_manzana.setProcedencia(separado2[1]);
-	 			o_manzana.setColor(separado2[2]);
-	 			o_manzana.setEurosKilo(Double.parseDouble(separado2[3]));
-	 			o_distribuidor.setNombre(separado2[4]);
-	 			o_manzana.setCodigobarras(Integer.parseInt(separado2[5]));
+	 			o_manzana.setTipoManzana(separado3[0]);
+	 			o_manzana.setProcedencia(separado3[1]);
+	 			o_manzana.setColor(separado3[2]);
+	 			o_manzana.setEurosKilo(Double.parseDouble(separado3[3]));
+	 			o_distribuidor.setNombre(separado3[4]);
+	 			o_manzana.setDistribuidor(o_distribuidor);
+	 			o_manzana.setCodigobarras(Integer.parseInt(separado3[5]));
 
 	 			//o_manzana.setCodigobarras(o_manzana);
 				//añadimos el objeto distribuidor al ArrayList
@@ -267,14 +269,13 @@ public class Almacen {
 		break;
 		case 4:
 		 //cesta
-			Cesta o_cesta = new Cesta();
 			//int numSocio = null;
       		System.out.print("\n----------- CESTA ---------------\n");
 			//pedimos el numero de socio
 			System.out.println("\n\tIntroduce tu numero de socio:");
 				int numSocio = sc.nextInt();
 			System.out.println("--------------------------------");
-
+			Double descuentoCesta = 0.0;
 			for(int p=0; p<al_cliente.size(); p++){
 				Double resultadoSocio = al_cliente.get(p).getNum_socio();
 				if (numSocio == resultadoSocio){
@@ -284,30 +285,36 @@ public class Almacen {
 					System.out.println("Apellidos: " + al_cliente.get(p).getApellidos());
 					System.out.println("Direccion: " + al_cliente.get(p).getDireccion().getDireccion());
 					System.out.println("Numero socio: " + al_cliente.get(p).getNum_socio());
-					System.out.println("Descuento " + al_cliente.get(p).getDto());
+					System.out.println("Descuento: " + al_cliente.get(p).getDto()+"%");
 					System.out.println("--------------------------------");
+					descuentoCesta = al_cliente.get(p).getDto();
 				}
 				else {
 				//no has introducido un nuemro de socio correcto
 				}
 			}
-			System.out.println("\n\tIntroduce el tipo de brras del producto:");
+			System.out.println("\n\tIntroduce el codigo de barras del producto:");
 				//o_cesta = o_manzana.setManzana.setCodigobarras(sc.next());
 				int codigoB = sc.nextInt();
-
-			for(int f=0; f<al_manzana.size(); f++){
-				//Double resultadoSocio = al_cliente.get(p).getNum_socio();
-				if (codigoB == al_manzana.get(f).getCodigobarras()){
+					//System.out.println(codigoB);
+			for(int f=1; f<al_manzana.size(); f++){
+				int cantidadProducto = al_manzana.get(f).getCodigobarras();
+					System.out.println(cantidadProducto);
+				//if (codigoB == cantidadProducto){
 					System.out.println("Tipo manzana: " + al_manzana.get(f).getTipoManzana());
 					System.out.println("Procedencia: " + al_manzana.get(f).getProcedencia());
 					System.out.println("Color: " + al_manzana.get(f).getColor());
-					System.out.println("Euros/Kilo: " + al_manzana.get(f).getEurosKilo());
+					System.out.println("Euros/Kilo: " + al_manzana.get(f).getEurosKilo()+"€");
+						Double eurokilo = al_manzana.get(f).getEurosKilo();
 					System.out.println("DISTRIBUIDOR: " + al_manzana.get(f).getDistribuidor().getNombre());
+
+						o_cesta.setDescuento(descuentoCesta, eurokilo);
+						Double total = o_cesta.getDescuento();
+						System.out.println("Precio con descuento: " + total + "€");
 					System.out.println("*********************************************************");
-				}
-				else {
+				/*else {
 				//no has introducido el codigo de barras correcto
-				}
+				}*/
 			}
 		break;
 		case 5:

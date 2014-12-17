@@ -1,2 +1,2 @@
-manzana1, paisesbajos, naranjito, 4, dia, 0001
-manzana2, paisruben, retraso, 6, eroski, 0002
+manzana1, paisesbajos, naranjito, 4, dia, 1234
+manzana2, paisruben, retraso, 6, eroski, 2345
